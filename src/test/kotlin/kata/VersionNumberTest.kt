@@ -50,7 +50,7 @@ class VersionNumberTest {
         }
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "{index} - Parsing of {0}")
     @ValueSource(strings = ["1.2.3", "3.2.1", "1.2.3-alpha.1"]) // six numbers
     fun `Test pre release and build info`(str: String) {
         val version = VersionNumber.from(str)
