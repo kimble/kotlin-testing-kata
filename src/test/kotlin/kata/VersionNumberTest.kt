@@ -1,5 +1,6 @@
 package kata
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -82,13 +83,24 @@ class VersionNumberTest {
         assertEquals(expectedVersion, parsedVersion)
     }
 
-    @Test
+    @DisplayName("Adding numbers")
     @ParameterizedTest(name = "{0}")
     @MethodSource("addCases")
     fun add(case : AddTest) {
         case.runTest()
     }
 
+
+    @Test
+    fun `Bad, better, good`() {
+        assertTrue(1 < 2)
+        assertTrue(1 < 2, "One is less then two")
+
+
+        assertThat(1)
+                .describedAs("The number one")
+                .isLessThan(2)
+    }
 
     companion object {
 
