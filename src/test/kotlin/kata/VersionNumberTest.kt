@@ -65,5 +65,17 @@ class VersionNumberTest {
         }
     }
 
+    @Test
+    fun `Equals is the shit`() {
+        val parsedVersion = VersionNumber.from("1.2.3")
+
+        val expectedVersion = VersionNumber(
+                major = 1,
+                minor = 2,
+                patch = 3
+        )
+
+        assertEquals(expectedVersion, parsedVersion)
+    }
 
 }
