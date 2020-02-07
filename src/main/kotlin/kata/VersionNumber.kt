@@ -16,7 +16,8 @@ data class VersionNumber(
     companion object {
 
         fun from(str : String): VersionNumber {
-            return VersionNumber(1,2,3)
+            val versionNumberList = str.split(".")
+            return VersionNumber(versionNumberList[0].toInt(),versionNumberList[1].toInt(),versionNumberList[2].toInt())
         }
 
     }
