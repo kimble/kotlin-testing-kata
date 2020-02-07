@@ -15,8 +15,8 @@ data class VersionNumber(
 
     companion object {
 
-        fun from(str : String) {
-            TODO("Implementer meg for faen!")
+        fun from(str : String): VersionNumber {
+            return VersionNumber(0,0,0)
         }
 
     }
