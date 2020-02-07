@@ -3,7 +3,9 @@ package kata
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
+import java.util.stream.Stream
 
 class VersionNumberTest {
 
@@ -76,6 +78,40 @@ class VersionNumberTest {
         )
 
         assertEquals(expectedVersion, parsedVersion)
+    }
+
+    @Test
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("addCases")
+    fun add(case : AddTest) {
+        case.runTest()
+    }
+
+
+    companion object {
+
+        @JvmStatic
+        fun addCases() : Stream<AddTest> {
+            return Stream.of(
+                    AddTest(1, 1, 2),
+                    AddTest(2, 2, 4)
+            )
+        }
+
+    }
+
+
+
+    data class AddTest(val a: Int, val b: Int, val expectedSum: Int) {
+
+        fun runTest() {
+            println(toString())
+            assertEquals(expectedSum, a + b)
+        }
+
+        override fun toString(): String {
+            return "Expecting: $a + $b = $expectedSum"
+        }
     }
 
 }
