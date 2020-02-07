@@ -17,7 +17,7 @@ data class VersionNumber(
 
         fun from(str : String): VersionNumber {
             val versionNumberList = str.split(".", "-")
-            return VersionNumber(versionNumberList[0].toInt(), versionNumberList[1].toInt(), versionNumberList[2].toInt(), "alpha")
+            return VersionNumber(versionNumberList[0].toInt(), versionNumberList[1].toInt(), versionNumberList[2].toInt(), versionNumberList.elementAtOrNull(3))
         }
 
     }
