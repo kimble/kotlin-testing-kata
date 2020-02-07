@@ -41,12 +41,12 @@ class VersionNumberTest {
     fun `Test build info`(str: String) {
         val version = VersionNumber.from(str)
         val elements = str.split(".", "+")
-
+        println(elements)
         assertEquals(version.major, elements[0].toInt())
         assertEquals(version.minor, elements[1].toInt())
         assertEquals(version.patch, elements[2].toInt())
         if (elements.count() > 3) {
-            assertEquals(version.preRelease, elements[3])
+            assertEquals(version.buildInfo, elements[3].toInt())
         }
     }
 
