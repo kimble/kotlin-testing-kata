@@ -12,4 +12,11 @@ class VersionNumberTest {
         assertNotNull(version)
     }
 
+    @Test
+    fun `Test actual parsing`() {
+        val version = VersionNumber.from("1.2.3")
+        assertEquals(version.major, 1)
+        assertEquals(version.minor, 2)
+        assertEquals(version.patch, 3)
+    }
 }
