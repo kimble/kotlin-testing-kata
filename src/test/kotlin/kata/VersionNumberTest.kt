@@ -23,11 +23,17 @@ class VersionNumberTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["1.2.3", "3.2.1"]) // six numbers
+    @ValueSource(strings = ["1.2.3", "3.2.1", "1.2.3-alpha"]) // six numbers
     fun `Test multiple versions`(str: String) {
         val version = VersionNumber.from(str)
-        assertEquals(version.major, str.split(".")[0].toInt())
-        assertEquals(version.minor, str.split(".")[1].toInt())
-        assertEquals(version.patch, str.split(".")[2].toInt())
+        val elements = str.split(".", "-")
+        assertEquals(version.major, elements[0].toInt())
+        assertEquals(version.minor, elements[1].toInt())
+        assertEquals(version.patch, elements[2].toInt())
+        if (elements.count() > 3) {
+            assertEquals(version.preRelease, elements[3])
+        }
     }
+
+
 }
