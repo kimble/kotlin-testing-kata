@@ -17,8 +17,9 @@ data class VersionNumber(
 
         fun from(str : String): VersionNumber {
             return if (str.contains("-")) {
-                val versionNumberList = str.split(".", "-")
-                VersionNumber(versionNumberList[0].toInt(), versionNumberList[1].toInt(), versionNumberList[2].toInt(), preRelease = versionNumberList.elementAtOrNull(3))
+                val versionNumberList = str.split(".")
+                val prereleaseList = str.split("-")
+                VersionNumber(versionNumberList[0].toInt(), versionNumberList[1].toInt(), versionNumberList[2].toInt(), preRelease = prereleaseList.elementAtOrNull(1))
             } else {
                 val versionNumberList = str.split(".", "+")
                 VersionNumber(versionNumberList[0].toInt(), versionNumberList[1].toInt(), versionNumberList[2].toInt(), buildInfo = versionNumberList.elementAtOrNull(3))
