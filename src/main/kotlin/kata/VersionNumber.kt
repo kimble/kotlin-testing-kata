@@ -16,8 +16,13 @@ data class VersionNumber(
     companion object {
 
         fun from(str : String): VersionNumber {
-            val versionNumberList = str.split(".", "-","+")
-            return VersionNumber(versionNumberList[0].toInt(), versionNumberList[1].toInt(), versionNumberList[2].toInt(), versionNumberList.elementAtOrNull(3))
+            return if (str.contains("-")) {
+                val versionNumberList = str.split(".", "-")
+                VersionNumber(versionNumberList[0].toInt(), versionNumberList[1].toInt(), versionNumberList[2].toInt(), preRelease = versionNumberList.elementAtOrNull(3))
+            } else {
+                val versionNumberList = str.split(".", "+")
+                VersionNumber(versionNumberList[0].toInt(), versionNumberList[1].toInt(), versionNumberList[2].toInt(), buildInfo = versionNumberList.elementAtOrNull(3))
+            }
         }
 
     }
