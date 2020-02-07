@@ -16,7 +16,7 @@ data class VersionNumber(
     companion object {
 
         fun from(str : String): VersionNumber {
-            return VersionNumber(0,0,0)
+            return VersionNumber(1,2,3)
         }
 
     }
